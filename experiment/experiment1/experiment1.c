@@ -40,7 +40,7 @@ status ListTrabverse(SqList *L);
 status InputData(SqList *L);  // 手动输入数据
 status SaveList(SqList *L);  // 保存数据到文件
 status LoadList(SqList *L);  // 从文件加载数据
-int main(void)
+int main()
 {
     int list;
     printf("输入表的个数: \n");
