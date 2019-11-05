@@ -10,6 +10,7 @@
 #define INFEASTABLE -1
 #define OVERFLOW -2
 #define NOTFOUND -3
+#define NUM 3
 
 typedef int status; 
 typedef int ElemType; //数据元素类型定义
@@ -42,10 +43,10 @@ status LoadList(LinkList *L);  //从文件加载表
 //主函数
 int main(void)
 {
-    LinkList L = NULL;
+    LinkList L[NUM] = {NULL};
     status a = 1; //用于储存函数的返回值
     // 此处为定义的一些临时变量用于不同的case
-	int i , j , e , pre_e , next_e;
+	int i = 0 , id = 0 , e = 0, pre_e = 0, next_e = 0;
     int op = 1;
     while(op)
     {
@@ -67,7 +68,14 @@ int main(void)
         switch (op)
         {
         case 1:  //创建一个空的线性链表
-            a = InitList(&L);
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
+            a = InitList(&L[id-1]);
             if(a==ERROR)
                 printf("线性表已存在，请勿重复创建! \n");
             else if(a==OK)
@@ -79,7 +87,14 @@ int main(void)
             getchar();
             break;
         case 2:  //销毁一个线性链表
-            a = DestroyList(&L);
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
+            a = DestroyList(&L[id-1]);
             if(a == OK) 
                     printf("线性表销毁成功！\n");
 		    else 
@@ -89,7 +104,14 @@ int main(void)
             getchar();
 		    break;
         case 3:  //将线性表重置为空表
-            a = ClearList(&L);
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
+            a = ClearList(&L[id-1]);
             if (a == OK)
 				    printf("线性表清空成功！\n");
 			else
@@ -99,7 +121,14 @@ int main(void)
             getchar();
 		    break;
         case 4:  // 判断线性表是否为空
-            a = ListEmpty(L);
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
+            a = ListEmpty(L[id-1]);
             if (a == INFEASTABLE)
 				    printf("线性表未创建！\n");
 			else if (a == FALSE)
@@ -111,7 +140,14 @@ int main(void)
             getchar();
 		    break;
         case 5:  //返回线性表L中数据元素的个数
-            a = ListLength(L);
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
+            a = ListLength(L[id-1]);
             if(a == INFEASTABLE)
                 printf("线性表未创建! \n");
             else
@@ -123,9 +159,16 @@ int main(void)
             getchar();
 		    break;
         case 6:  //用e返回L中第i个数据元素的值
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
             printf("请输入要取得线性表中的第几个元素： ");
 			scanf("%d", &i);
-            a = GetElem(L, i, &e);
+            a = GetElem(L[id-1], i, &e);
             if(a!=OK)
             {
                 if(a==INFEASTABLE)
@@ -142,9 +185,16 @@ int main(void)
             getchar();
 		    break;
         case 7:  //输入一个元素值返回它在表中的位置
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
             printf("输入线性表中的一个数: ");
 			scanf("%d", &e);
-            a = LocateElem(L, e);
+            a = LocateElem(L[id-1], e);
             if (a == INFEASTABLE)
 			{
 				printf("线性表未创建\n");
@@ -162,9 +212,16 @@ int main(void)
             getchar();
 		    break;
         case 8:  //用pre_e返回线性表中某个元素的前驱
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
             printf("输入线性表中的一个数: ");
 			scanf("%d", &e);
-            a = PriorElem(L, e, &pre_e);
+            a = PriorElem(L[id-1], e, &pre_e);
             if (a == OK)
 				printf("%d的前驱是%d\n", e, pre_e);
 			else if (a == INFEASTABLE)
@@ -178,9 +235,16 @@ int main(void)
             getchar();
 		    break;
         case 9:  //用next_e返回线性表中某个元素的后继
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
             printf("输入线性表中的一个数: ");
 			scanf("%d", &e);
-            a = NextElem(L, e, &next_e);
+            a = NextElem(L[id-1], e, &next_e);
             if (a == OK)
 				printf("%d的后继是%d\n", e, next_e);
 			else if (a == INFEASTABLE)
@@ -194,11 +258,18 @@ int main(void)
             getchar();
 		    break;
         case 10:  //在L的第i个位置之前插入新的数据元素e
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
             printf("输入插入的位置i（从1开始计数）\n");
 			scanf("%d", &i);
 			printf("输入插入的值e\n");
 			scanf("%d", &e);
-            a = ListInsert(&L, i, e);
+            a = ListInsert(&L[id-1], i, e);
             if (a == OK)
 				printf("插入成功！\n");
 			else if (a == INFEASTABLE)
@@ -214,9 +285,16 @@ int main(void)
             getchar();
 		    break;
         case 11:  //删除L的第i个数据元素，用e返回其值
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
             printf("输入删除的位置i（从1开始计数）\n");
 			scanf("%d", &i);
-            a = ListDelete(&L, i, &e);
+            a = ListDelete(&L[id-1], i, &e);
             if (a == OK)
 			{
 				printf("删除%d成功！\n", e);
@@ -230,7 +308,14 @@ int main(void)
             getchar();
 		    break;
         case 12:  //遍历线性表
-            a = ListTrabverse(L);
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
+            a = ListTrabverse(L[id-1]);
             if(a==INFEASTABLE) 
                 printf("线性表未创建！\n");
             else if(a==ERROR)
@@ -240,7 +325,14 @@ int main(void)
             getchar();
 		    break;
         case 13:  //手动输入数据
-            a = InputData(&L);
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
+            a = InputData(&L[id-1]);
             if(a == INFEASTABLE)
                 printf("线性表未创建! \n");
             printf("按Enter键继续");
@@ -248,7 +340,14 @@ int main(void)
             getchar();
             break;
         case 14:  //将当前表保存到文件
-            a = SaveList(L);
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
+            a = SaveList(L[id-1]);
             if(a==INFEASTABLE)
                 printf("线性表未创建! \n");
             else if(a==ERROR)
@@ -260,7 +359,14 @@ int main(void)
             getchar();
 		    break;
         case 15:  //从文件中加载表
-            a = LoadList(&L);
+            printf("输入表的序号[1-%d]: \n",NUM);
+            scanf("%d",&id);
+            while(id<=0||id>NUM)
+            {
+                printf("表的序号不合法,请重新输入: \n");
+                scanf("%d",&id);
+            }
+            a = LoadList(&L[id-1]);
             if(a==INFEASTABLE)
                 printf("线性表未创建! \n");
             else if(a==ERROR)
@@ -501,6 +607,7 @@ status InputData(LinkList *L)
 {
     if(!*L)
         return INFEASTABLE;  //线性链表未创建
+    ClearList(L);
     LinkList p, q;
     p = *L;
     int x;
