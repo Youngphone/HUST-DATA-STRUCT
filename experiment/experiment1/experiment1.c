@@ -19,7 +19,7 @@ typedef int ElemType; //数据元素类型定义
 /*-------page 22 on textbook -------*/
 #define LIST_INIT_SIZE 100
 #define LISTINCREMENT  10
-typedef struct{  //顺序表（顺序结构）的定义
+typedef struct{  //顺序表的定义
 	ElemType *elem;
 	int length;
 	int listsize;
