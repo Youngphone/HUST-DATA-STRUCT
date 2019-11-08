@@ -11,6 +11,7 @@
 #define INFEASTABLE -1
 #define OVERFLOW -2
 #define NOTFOUND -3
+#define NUM 10
 
 typedef int status; 
 typedef int ElemType; //数据元素类型定义
@@ -42,19 +43,9 @@ status SaveList(SqList *L);  // 保存数据到文件
 status LoadList(SqList *L);  // 从文件加载数据
 int main()
 {
-    int list;
-    printf("输入表的个数: \n");
-    scanf("%d",&list);
-    while (list<=0)
-    {
-        printf("输入值不合法，请重新输入: \n");
-        scanf("%d",&list);
-    }
     
-    SqList *L[list];  //创建一个结构指针数组
+    SqList *L[NUM] = {NULL};  //创建一个结构指针数组
     int b;
-    for(b = 0; b<list; b++)
-        L[b]=NULL;
     status a = 1; //用于储存函数的返回值
     // 此处为定义的一些临时变量用于不同的case
 	int i , j , e , pre_e , next_e;
@@ -79,9 +70,9 @@ int main()
         switch(op)
         {
 	        case 1:  //创建一个空的线性表
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -97,9 +88,9 @@ int main()
                 getchar();
 		        break;
 	        case 2:  //销毁线性表
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -113,9 +104,9 @@ int main()
                 getchar();
 		        break;
 	        case 3:  //将线性表重置为空表
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -129,9 +120,9 @@ int main()
                 getchar();
 		        break;
 	        case 4:  // 判断线性表是否为空
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -147,9 +138,9 @@ int main()
                 getchar();
 		        break;
 	        case 5:  //返回线性表L中数据元素的个数
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -165,9 +156,9 @@ int main()
                 getchar();
 		        break;
 	        case 6:  //用e返回L中第i个数据元素的值
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -192,9 +183,9 @@ int main()
                 getchar();
 		        break;
 	        case 7:  //输入一个元素值返回它在表中的位置
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -219,9 +210,9 @@ int main()
                 getchar();
 		        break;
 	        case 8:  //用pre_e返回线性表中某个元素的前驱
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -242,9 +233,9 @@ int main()
                 getchar();
 		        break;
 	        case 9:  //用next_e返回线性表中某个元素的后继
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -265,9 +256,9 @@ int main()
                 getchar();
 		        break;
 	        case 10:  //在L的第i个位置之前插入新的数据元素e
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -292,9 +283,9 @@ int main()
                 getchar();
 		        break;
 	        case 11:  //删除L的第i个数据元素，用e返回其值
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -316,9 +307,9 @@ int main()
                 getchar();
 		        break;
 	        case 12:  //遍历线性表  
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -333,9 +324,9 @@ int main()
                 getchar();
 		        break;
             case 13:  //手动输入数据
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -347,9 +338,9 @@ int main()
                 getchar();
                 break;
             case 14:  //将当前表保存到文件
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -366,9 +357,9 @@ int main()
                 getchar();
 		        break;
             case 15:  //从文件中加载表
-                printf("输入表的序号[1~%d]: \n",list);
+                printf("输入表的序号[1~%d]: \n",NUM);
                 scanf("%d",&j);
-                while(j<=0||j>list)
+                while(j<=0||j>NUM)
                 {
                     printf("表的序号不合法,请重新输入: \n");
                     scanf("%d",&j);
@@ -598,6 +589,7 @@ status InputData(SqList *L)
         return INFEASTABLE;
     if (!L->elem)
         return INFEASTABLE;
+    ClearList(L);
     int x;
     printf("请输入若干整数以任意一个字母结束: \n");
     while((scanf("%d",&x))==1)
