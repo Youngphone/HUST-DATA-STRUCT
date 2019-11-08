@@ -10,7 +10,7 @@
 #define INFEASTABLE -1
 #define OVERFLOW -2
 #define NOTFOUND -3
-#define NUM 3   //用于定义多表的数量
+#define NUM 3   //用于表示多表的数量
 
 typedef int status; 
 typedef int ElemType; //数据元素类型定义
