@@ -16,6 +16,7 @@ typedef int status;
 typedef int ElemType; //数据元素类型定义
 //线性表的单链表存储结构
 typedef struct LNode
+
 {
     ElemType data;
     struct LNode *next;
@@ -26,19 +27,19 @@ typedef struct LNode
 //单链表操作
 status InitList(LinkList *L);
 status DestroyList(LinkList *L);
-status ClearList(LinkList *L);
+status ClearList(LinkList L);
 status ListEmpty(LinkList L);
 int ListLength(LinkList L);
 status GetElem(LinkList L,int i,ElemType* e);
 status LocateElem(LinkList L,ElemType e); 
 status PriorElem(LinkList L,ElemType cur,ElemType* pre_e);
 status NextElem(LinkList L,ElemType cur,ElemType* next_e);
-status ListInsert(LinkList *L,int i,ElemType e);
-status ListDelete(LinkList *L,int i,ElemType *e);
+status ListInsert(LinkList L,int i,ElemType e);
+status ListDelete(LinkList L,int i,ElemType *e);
 status ListTrabverse(LinkList L);
-status InputData(LinkList *L);  //手动输入数据
+status InputData(LinkList L);  //手动输入数据
 status SaveList(LinkList L);  //将当前表保存到文件
-status LoadList(LinkList *L);  //从文件加载表
+status LoadList(LinkList L);  //从文件加载表
 
 //主函数
 int main(void)
@@ -111,7 +112,7 @@ int main(void)
                 printf("表的序号不合法,请重新输入: \n");
                 scanf("%d",&id);
             }
-            a = ClearList(&L[id-1]);
+            a = ClearList(L[id-1]);
             if (a == OK)
 				    printf("线性表清空成功！\n");
 			else
@@ -269,7 +270,7 @@ int main(void)
 			scanf("%d", &i);
 			printf("输入插入的值e\n");
 			scanf("%d", &e);
-            a = ListInsert(&L[id-1], i, e);
+            a = ListInsert(L[id-1], i, e);
             if (a == OK)
 				printf("插入成功！\n");
 			else if (a == INFEASTABLE)
@@ -294,7 +295,7 @@ int main(void)
             }
             printf("输入删除的位置i（从1开始计数）\n");
 			scanf("%d", &i);
-            a = ListDelete(&L[id-1], i, &e);
+            a = ListDelete(L[id-1], i, &e);
             if (a == OK)
 			{
 				printf("删除%d成功！\n", e);
@@ -332,7 +333,7 @@ int main(void)
                 printf("表的序号不合法,请重新输入: \n");
                 scanf("%d",&id);
             }
-            a = InputData(&L[id-1]);
+            a = InputData(L[id-1]);
             if(a == INFEASTABLE)
                 printf("线性表未创建! \n");
             printf("按Enter键继续");
@@ -366,7 +367,7 @@ int main(void)
                 printf("表的序号不合法,请重新输入: \n");
                 scanf("%d",&id);
             }
-            a = LoadList(&L[id-1]);
+            a = LoadList(L[id-1]);
             if(a==INFEASTABLE)
                 printf("线性表未创建! \n");
             else if(a==ERROR)
@@ -422,11 +423,11 @@ status DestroyList(LinkList *L)
 }
 
 //清空线性链表
-status ClearList(LinkList *L)
+status ClearList(LinkList L)
 {
-    if(!*L)
+    if(!L)
         return INFEASTABLE;  //线性链表未创建
-    LinkList p = (*L)->next;
+    LinkList p = L->next;
     LinkList pNext = p;
     while(p)
     {
@@ -434,8 +435,8 @@ status ClearList(LinkList *L)
         free(p);
         p = pNext;
     }
-    (*L)->data = 0;
-    (*L)->next = NULL;
+    L->data = 0;
+    L->next = NULL;
     return OK;
 }
 
@@ -537,18 +538,18 @@ status NextElem(LinkList L, ElemType cur, ElemType* next_e)
 }
 
 //在L的第i个位置之前插入新的数据元素e
-status ListInsert(LinkList *L, int i, ElemType e)
+status ListInsert(LinkList L, int i, ElemType e)
 {
-    if(!*L)
+    if(!L)
         return INFEASTABLE;  //线性链表未创建
-    if(i<=0||i>(*L)->data+1)
+    if(i<=0||i>L->data+1)
         return ERROR;  //i值不合法
     LinkList p, q, f;
     f = (LinkList)malloc(sizeof(LNode));
     if(!f)
         return OVERFLOW;  //内存不足，插入失败
     f->data = e;
-    p = *L;
+    p = L;
     int j;
     for(j=1; j<=i; j++)
     {
@@ -557,19 +558,19 @@ status ListInsert(LinkList *L, int i, ElemType e)
     }
     q->next = f;
     f->next = p;
-    (*L)->data++;
+    L->data++;
     return OK;
 }
 
 //删除L的第i个数据元素，用e返回其值
-status ListDelete(LinkList *L,int i,ElemType *e)
+status ListDelete(LinkList L,int i,ElemType *e)
 {
-    if(!*L)
+    if(!L)
         return INFEASTABLE;  //线性链表未创建
-    if(i<=0||i>(*L)->data)
+    if(i<=0||i>L->data)
         return ERROR;  //i值不合法
     LinkList p, q, f;
-    p = *L;
+    p = L;
     int j;
     for(j=1; j<=i; j++)
     {
@@ -581,7 +582,7 @@ status ListDelete(LinkList *L,int i,ElemType *e)
     p = p->next;
     q->next = p;
     free(f);
-    (*L)->data--;
+    L->data--;
     return OK;
 }
 
@@ -605,13 +606,13 @@ status ListTrabverse(LinkList L)
 }
 
 //手动输入数据
-status InputData(LinkList *L)
+status InputData(LinkList L)
 {
-    if(!*L)
+    if(!L)
         return INFEASTABLE;  //线性链表未创建
     ClearList(L);
     LinkList p, q;
-    p = *L;
+    p = L;
     int x;
     printf("请输入若干整数以任意一个字母结束: \n");
     while((scanf("%d",&x))==1)
@@ -623,7 +624,7 @@ status InputData(LinkList *L)
         q->next = NULL;
         p->next = q;
         p = p->next;
-        (*L)->data++;
+        L->data++;
     }
     return OK;
 }
@@ -655,9 +656,9 @@ status SaveList(LinkList L)
 }
 
 //从文件加载表
-status LoadList(LinkList *L)
+status LoadList(LinkList L)
 {
-    if(!*L)
+    if(!L)
         return INFEASTABLE;  //线性链表未创建
     FILE *fp;
 	char filename[30];
@@ -669,7 +670,7 @@ status LoadList(LinkList *L)
 		return ERROR;
 	}
     LinkList p, q;
-    p = *L;
+    p = L;
     q = (LinkList)malloc(sizeof(LNode));
     if(!q)
         return OVERFLOW;  //内存不足
@@ -678,7 +679,7 @@ status LoadList(LinkList *L)
         q->next = NULL;
         p->next = q;
         p = p->next;
-        (*L)->data++;
+        L->data++;
         q = (LinkList)malloc(sizeof(LNode));
         if(!q)
             return OVERFLOW;  //内存不足
