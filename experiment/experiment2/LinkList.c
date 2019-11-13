@@ -371,6 +371,8 @@ int main(void)
                 printf("线性表未创建! \n");
             else if(a==ERROR)
                 printf("文件打开失败! \n");
+            else if(a==OVERFLOW)
+                printf("内存不足,加载失败!\n");
             else
                 printf("加载成功! \n");
             printf("按Enter键继续");
