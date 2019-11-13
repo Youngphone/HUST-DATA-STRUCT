@@ -53,14 +53,14 @@ int main(void)
 	    system("clear");	printf("\n\n");
 	    printf("      Menu for Linear Table On Sequence Structure \n");
 	    printf("-------------------------------------------------\n");
-	    printf("    	  1. InitList       9. NextElem\n");
+	    printf("    	  1. InitList        9. NextElem\n");
 	    printf("    	  2. DestroyList    10. ListInsert\n");
 	    printf("    	  3. ClearList      11. ListDelete\n");
 	    printf("    	  4. ListEmpty      12. ListTrabverse\n");
 	    printf("    	  5. ListLength     13. InputData\n");
 	    printf("    	  6. GetElem        14. SavaList\n");
         printf("    	  7. LocateElem     15. LoadList\n");
-        printf("    	  8. PriorElem      0. Exit\n");
+        printf("    	  8. PriorElem       0. Exit\n");
 	    
 	    printf("-------------------------------------------------\n");
 	    printf("    请选择你的操作[0~15]:");
