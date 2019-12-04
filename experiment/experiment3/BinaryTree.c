@@ -283,6 +283,8 @@ int main()
                 p = LocateNode(L.Tree[id - 1].root, e);
                 if (p == NULL)
                     printf("不存在key为%d的结点\n", e);
+                else if(e == 1)
+                    printf("key为%d的结点没有兄弟结点\n", e);
                 else
                 {
                     p = GetSibling(L.Tree[id - 1].root, e);
@@ -757,7 +759,6 @@ status LevelOrderTraverse(BiTree T)
 		for(i=1; i <= maxleng; i++)
 		{
 			level(T, i);  //对每一层进行访问
-            printf("\n");
 		}
 		return OK;
 	}
@@ -769,7 +770,7 @@ status SaveBiTree(BinaryTree T)
 {
     FILE *fp;
     char filename[30];
-    printf("保存的文件名为二叉树的名称\n");
+    printf("保存的文件名为二叉树的名称%s\n",T.name);
     strcpy(filename,T.name);
     // 写文件
     if ((fp = fopen(filename, "wb")) == NULL) //文件打开失败
@@ -798,6 +799,7 @@ status SaveBiTree(BinaryTree T)
             Push(S,p->lchild);
     }
     fclose(fp);
+    free(S);
     printf("保存成功!\n");
     return OK;
 }
