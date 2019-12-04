@@ -84,6 +84,30 @@ int GetID()
     }
     return id;
 }
+int Getname(SqList L)
+{
+    // 输入树的名字
+    int i = 0;
+    char name[30];
+    printf("请输入要操作的树的名字:");
+    scanf("%s", name);
+    for(i = 0; i<NUM; i++)
+    {
+        if(strcmp(name,L.Tree[i].name)==0)
+            break;
+    }
+    while(i == NUM)
+    {
+        printf("不存在名字为%s的树,请重新输入:",name);
+        scanf("%s", name);
+        for(i = 0; i<NUM; i++)
+        {
+            if(strcmp(name,L.Tree[i].name)==0)
+                break;
+        }
+    }
+    return (i+1);
+}
 
 //主函数
 int main()
@@ -138,7 +162,7 @@ int main()
             break;
         case 2:
             // 销毁二叉树
-            id = GetID();
+            id = Getname(L);
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
             else
@@ -152,7 +176,7 @@ int main()
             break;
         case 3:
             // 清空二叉树 同时根结点为无效数据
-            id = GetID();
+            id = Getname(L);
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
             else
@@ -166,7 +190,7 @@ int main()
             break;
         case 4:
             // 判断空树
-            id = GetID();
+            id = Getname(L);
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
             else
@@ -182,7 +206,7 @@ int main()
             break;
         case 5:
             // 求深度 注意空树
-            id = GetID();
+            id = Getname(L);
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
             else
@@ -201,7 +225,7 @@ int main()
             break;
         case 6:
             // LocateNode
-            id = GetID();
+            id = Getname(L);
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
             else
@@ -223,7 +247,7 @@ int main()
             break;
         case 7:
             // Assign
-            id = GetID();
+            id = Getname(L);
             getchar();
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
@@ -249,7 +273,7 @@ int main()
             break;
         case 8:
             //GetSibling
-            id = GetID();
+            id = Getname(L);
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
             else
@@ -265,7 +289,7 @@ int main()
                     if (p)
                     {
                         printf("key为%d的结点的兄弟的地址是%p\n", e, p);
-                        printf("其结点的值域为:%c\n",p->data);
+                        printf("其兄弟结点的值域为:%c\n",p->data);
                     }
                     else
                     {
@@ -279,12 +303,12 @@ int main()
             break;
         case 9:
             // InsertNode
-            id = GetID();
+            id = Getname(L);
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
             else
             {
-                printf("请输入结点的key:");
+                printf("请输入要操作的结点的key:");
                 scanf("%d", &e);
                 getchar();
                 p = LocateNode(L.Tree[id - 1].root, e);
@@ -306,7 +330,7 @@ int main()
             break;
         case 10:
             // DeleteNode
-            id = GetID();
+            id = Getname(L);
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
             else
@@ -327,7 +351,7 @@ int main()
             getchar();
             break;
         case 11:
-            id = GetID();
+            id = Getname(L);
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
             else if(L.Tree[id - 1].root->lchild == NULL&&L.Tree[id - 1].root->rchild ==NULL)
@@ -339,7 +363,7 @@ int main()
             getchar();
             break;
         case 12:
-            id = GetID();
+            id = Getname(L);
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
             else if(L.Tree[id - 1].root->lchild == NULL&&L.Tree[id - 1].root->rchild ==NULL)
@@ -351,7 +375,7 @@ int main()
             getchar();
             break;
         case 13:
-            id = GetID();
+            id = Getname(L);
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
             else if(L.Tree[id - 1].root->lchild == NULL&&L.Tree[id - 1].root->rchild ==NULL)
@@ -363,7 +387,7 @@ int main()
             getchar();
             break;
         case 14:
-            id = GetID();
+            id = Getname(L);
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
             else if(L.Tree[id - 1].root->lchild == NULL&&L.Tree[id - 1].root->rchild ==NULL)
@@ -376,7 +400,7 @@ int main()
             break;
         case 15:
             // Save
-            id = GetID();
+            id = Getname(L);
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
             else
@@ -386,7 +410,7 @@ int main()
             getchar();
             break;
         case 16:
-            id = GetID();
+            id = Getname(L);
             if (L.Tree[id - 1].root == NULL) // 二叉树未创建！
                 printf("二叉树未创建！\n");
             else
